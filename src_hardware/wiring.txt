@@ -1,0 +1,36 @@
+Display this file with a monospace font.
+
+
+ Arduino Uno                       Display (J12864)
+
+          13 --------------------- E
+          11 --------------------- R/W
+          10 --------------------- RS
+           5 --------------------- BLA
+
+         GND --------------------- GND
+                                `- PSB
+                                `- BLK
+
+          5V --------------------- VCC
+
+       RESET -------.
+                    |
+                  ----- +   min. 10uF
+                  -----     min. 5V
+                    |
+         GND -------´
+
+
+The circuit is powered over the USB port the Arduino.
+Serial data is sent over the virtual COM port of the Arduino.
+
+Every other ST7920 based Display should work too.
+Please make sure that the display backlight has a protective resistor.
+Some displays require an additional potentiometer for setting the display contrast.
+Connect on end of the potentiometer to VOUT, the other one to GND and the wiper to V0.
+
+The capacitor is needed to stop the Arduino from resetting
+on serial activity. This is because the DTR line resets the MCU.
+Any capacitor with more than 10uF should work fine, for more info see:
+http://playground.arduino.cc/Main/DisablingAutoResetOnSerialConnection
