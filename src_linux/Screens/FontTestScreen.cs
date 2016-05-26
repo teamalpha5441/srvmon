@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using srvmon.Text;
 
 namespace srvmon.Screens
 {
@@ -6,14 +7,13 @@ namespace srvmon.Screens
     {
         public override void Render(StatCollector StatCollector, Graphics Graphics)
         {
-            this.RenderTitle(Graphics, "FONT TEST SCREEN");
-
-            var font = new Text.DefaultFont7();
-            font.RenderString(Graphics, "ABCDEFGHIJKLM", Color.White, 0, 11);
-            font.RenderString(Graphics, "NOPQRSTUVWXYZ", Color.White, 0, 19);
-            font.RenderString(Graphics, "abcdefghijklm", Color.White, 0, 27);
-            font.RenderString(Graphics, "nopqrstuvwxyz", Color.White, 0, 35);
-            font.RenderString(Graphics, "0 123456789 % / . :", Color.White, 0, 43);
+            var font = DefaultFont7.Instance;
+            Renderer.RenderTitle(Graphics, "FONT TEST SCREEN", font);
+            Renderer.RenderString(Graphics, "ABCDEFGHIJKLM", font, Color.White, 0, 11);
+            Renderer.RenderString(Graphics, "NOPQRSTUVWXYZ", font, Color.White, 0, 19);
+            Renderer.RenderString(Graphics, "abcdefghijklm", font, Color.White, 0, 27);
+            Renderer.RenderString(Graphics, "nopqrstuvwxyz", font, Color.White, 0, 35);
+            Renderer.RenderString(Graphics, "0 123456789 % / . :", font, Color.White, 0, 43);
         }
     }
 }

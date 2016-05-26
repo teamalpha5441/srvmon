@@ -30,27 +30,5 @@ namespace srvmon.Text
                 return result;
             else return Letter.GenerateDefaultLetter(4, 7);
         }
-
-        public void RenderString(Graphics Graphics, string String, Color Color, int X, int Y)
-        {
-            if (String.Length > 0)
-                using (Bitmap b = new Bitmap(MeasureString(String), this.MaxHeight))
-                {
-                    int xpos = 0;
-                    for (ushort i = 0; i < String.Length; i++)
-                    {
-                        Letter letter = GetLetter(String[i]);
-                        int ypos = this.MaxHeight - letter.Height;
-
-                        for (byte y = 0; y < letter.Height; y++)
-                            for (byte x = 0; x < letter.Width; x++)
-                                if (letter.Data[y * letter.Width + x])
-                                    b.SetPixel(xpos + x, ypos + y, Color);
-
-                        xpos += letter.Width + 1;
-                    }
-                    Graphics.DrawImage(b, X, Y);
-                }
-        }
     }
 }

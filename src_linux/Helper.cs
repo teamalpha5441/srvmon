@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace srvmon
+﻿namespace srvmon
 {
     public static class Helper
     {
@@ -31,33 +29,6 @@ namespace srvmon
             for (int i = Array.Length - 1; i >= 1; i--)
                 Array[i] = Array[i - 1];
             return Array;
-        }
-
-        public static void RenderGraph(Graphics Graphics, byte X, byte Y, byte Width, byte Height, float[] Values, float? MaxValue = null)
-        {
-            if (!MaxValue.HasValue)
-            {
-                MaxValue = Values[0];
-                for (int i = 1; i < Values.Length; i++)
-                    if (Values[i] > MaxValue.Value)
-                        MaxValue = Values[i];
-            }
-
-            Graphics.DrawLine(Pens.White, X, Y, X, Y + Height);
-            Graphics.DrawLine(Pens.White, X, Y + Height, X + Width, Y + Height);
-
-            PointF? lastPoint = null;
-            for (int i = 0; true; i++)
-            {
-                int xpos = X + Width - i;
-                if (xpos <= X)
-                    break;
-                float ypos = Y + (Height * (1 - Values[i] / MaxValue.Value));
-                PointF currentPoint = new PointF(xpos, ypos);
-                if (lastPoint.HasValue)
-                    Graphics.DrawLine(Pens.White, lastPoint.Value, currentPoint);
-                lastPoint = currentPoint;
-            }
         }
     }
 }

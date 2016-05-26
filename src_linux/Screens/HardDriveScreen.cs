@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using srvmon.Text;
 
 namespace srvmon.Screens
 {
@@ -23,13 +24,17 @@ namespace srvmon.Screens
 
         public override void Render(StatCollector StatCollector, Graphics Graphics)
         {
-            this.RenderTitle(Graphics, "HARD DRIVE STATUS");
+            var font = DefaultFont7.Instance;
+            Renderer.RenderTitle(Graphics, "HARD DRIVE STATUS", font);
 
-            var font = new Text.DefaultFont7();
             for (byte i = 0; i < 10 && i < HardDrives.Length; i++)
             {
                 var status = StatCollector.HardDriveStatus[HardDrives[i]];
-                font.RenderString(Graphics, GetCharFromStatus(status) + " " + HardDrives[i], Color.White, i > 4 ? 66 : 2, 12 + i * 10 - (i > 4 ? 50 : 0));
+                int xpos = i > 4 ? 66 : 2;
+                int ypos = 12 + i * 10;
+                if (i > 4)
+                    ypos -= 50;
+                Renderer.RenderString(Graphics, GetCharFromStatus(status) + " " + HardDrives[i], font, Color.White, xpos, ypos);
             }
         }
     }

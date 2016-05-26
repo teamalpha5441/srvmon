@@ -40,7 +40,7 @@ namespace srvmon
             // prepare screens
             var screens = new List<Screen>(8);
             // screens.Add(new FontTestScreen());
-            screens.Add(new SystemdStatusScreen());
+            screens.Add(new SystemStatusScreen());
             screens.Add(new ResourceUsageScreen());
             for (byte i = 0; i < config.NetworkInterfaces.Length; i++)
                 screens.Add(new NetworkInterfaceScreen(config.NetworkInterfaces[i]));

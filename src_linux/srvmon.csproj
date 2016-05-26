@@ -44,14 +44,15 @@
     <Compile Include="Display.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Renderer.cs" />
     <Compile Include="Screens\FontTestScreen.cs" />
     <Compile Include="Screens\HardDriveScreen.cs" />
     <Compile Include="Screens\ResourceUsageScreen.cs" />
+    <Compile Include="Screens\SystemStatusScreen.cs" />
     <Compile Include="Text\Font.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Screens\NetworkInterfaceScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
-    <Compile Include="Screens\SystemdStatusScreen.cs" />
     <Compile Include="StatCollector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
