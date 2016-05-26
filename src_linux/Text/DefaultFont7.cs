@@ -562,6 +562,11 @@ namespace srvmon.Text
             }));
         }
 
+        private static readonly DefaultFont7 _Instance = new DefaultFont7();
+        public static DefaultFont7 Instance { get { return _Instance; } }
+
+        private DefaultFont7() { }
+
         public override byte MaxHeight { get { return 7; } }
 
         protected override Dictionary<char, Letter> Letters { get { return _Letters; } }

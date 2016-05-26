@@ -14,6 +14,11 @@ namespace srvmon.Text
             _Letters.Add(' ', new Letter(3, 1, new bool[] { false, false, false }));
         }
 
+        private static readonly DefaultFont14 _Instance = new DefaultFont14();
+        public static DefaultFont14 Instance { get { return _Instance; } }
+
+        private DefaultFont14() { }
+
         public override byte MaxHeight { get { return 7; } }
 
         protected override Dictionary<char, Letter> Letters { get { return _Letters; } }
