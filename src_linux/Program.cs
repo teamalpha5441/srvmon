@@ -10,6 +10,10 @@ namespace srvmon
 {
     public static class Program
     {
+        // do not define as const or compiler warns about unreachable code
+        // screenshots will be saved to /tmp/srvmon_screenshot_${i}.png
+        private static readonly bool SAVE_SCREENSHOTS = false;
+
         [DllImport("libc", EntryPoint = "geteuid")]
         public static extern int geteuid();
 
@@ -46,6 +50,9 @@ namespace srvmon
                 screens.Add(new NetworkInterfaceScreen(config.NetworkInterfaces[i]));
             screens.Add(new HardDriveScreen(config.HardDrives.Keys.ToArray()));
 
+            // screenshot counter
+            uint screenShotCounter = 0;
+
             DateTime lastScreenChange = DateTime.Now;
             byte screenIndex = 0; // start screen index
             Screen currentScreen = screens[screenIndex];
@@ -71,8 +78,18 @@ namespace srvmon
                     using (Bitmap bitmap = Display.CreateBitmap())
                     {
                         using (Graphics graphics = Graphics.FromImage(bitmap))
+                        {
+                            if (SAVE_SCREENSHOTS)
+                                graphics.Clear(Color.Blue);
                             currentScreen.Render(statCollector, graphics);
+                        }
                         display.WriteBitmap(bitmap);
+
+                        if (SAVE_SCREENSHOTS)
+                        {
+                            bitmap.Save("/tmp/srvmon_screen_" + screenShotCounter + ".png");
+                            screenShotCounter++;
+                        }
                     }
 
                     Thread.Sleep(1000);
