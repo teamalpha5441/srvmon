@@ -11,22 +11,29 @@ namespace srvmon.Screens
             var font = DefaultFont7.Instance;
             Renderer.RenderTitle(Graphics, "SYSTEM STATUS", font);
 
-            //TODO draw current date and time
-            //TODO draw server uptime
-            //TODO logged in users?
+            // write date and time
+            DateTime now = DateTime.Now;
+            Renderer.RenderString(Graphics, now.ToString("yyyy-MM-dd HH:mm:ss"), font, Color.White, 0, 11);
 
-            // draw status string
-            //TODO bigger font
-            string status = Enum.GetName(typeof(StatCollector.SystemStatus), StatCollector.SystemdStatus).ToLower();
-            float xpos = 64.5f - font.MeasureString(status) / 2f;
-            Renderer.RenderString(Graphics, status, font, Color.White, (int)xpos, 26);
-            
-            // draw failed service names
+            // write unix time
+            double unixTime = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            Renderer.RenderString(Graphics, "Unix Time: " + (uint)unixTime, font, Color.White, 0, 19);
+
+            // write uptime
+            string uptime = (now - StatCollector.BootTime).ToString(@"d\d\ hh\:mm\:ss");
+            Renderer.RenderString(Graphics, "Uptime: " + uptime, font, Color.White, 0, 27);
+
+            // Y = 35
+
+            // write systemd status
+            string systemdStatus = Enum.GetName(typeof(StatCollector.SysStatus), StatCollector.SystemdStatus);
+            Renderer.RenderString(Graphics, "Systemd Status: " + systemdStatus, font, Color.White, 0, 49);
+
+            // write first failed unit
             if (StatCollector.SystemdFailedUnits.Count > 0)
             {
                 StatCollector.SystemdFailedUnits.Sort();
-                for (byte i = 0; i < 2 && i < StatCollector.SystemdFailedUnits.Count; i++)
-                    Renderer.RenderString(Graphics, StatCollector.SystemdFailedUnits[i], font, Color.White, 0, 49 + i * 8);
+                Renderer.RenderString(Graphics, StatCollector.SystemdFailedUnits[0], font, Color.White, 0, 57);
             }
         }
     }

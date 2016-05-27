@@ -10,7 +10,7 @@ namespace srvmon.Screens
             var font = DefaultFont7.Instance;
             Renderer.RenderTitle(Graphics, "RESOURCE USAGE", font);
             Renderer.RenderGraph(Graphics, StatCollector.CPU_Usage, 0, 11, 128, 27, 1);
-            Renderer.RenderString(Graphics, "CPU", font, Color.White, 0, 39);
+            Renderer.RenderString(Graphics, "CPU", font, Color.White, 0, 40);
         }
     }
 }

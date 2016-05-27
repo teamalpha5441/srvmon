@@ -18,7 +18,7 @@ namespace srvmon
             public float[] TransmitSpeed;
         }
 
-        public enum SystemStatus
+        public enum SysStatus
         {
             Running,
             Degraded,
@@ -44,7 +44,7 @@ namespace srvmon
         public DateTime BootTime { get; private set; }
         public float[] CPU_Usage { get; private set; }
         public float[] RAM_Usage { get; private set; }
-        public SystemStatus SystemdStatus { get; private set; }
+        public SysStatus SystemdStatus { get; private set; }
         public List<string> SystemdFailedUnits { get; private set; }
         public Dictionary<string, HDDStatus> HardDriveStatus { get; private set; }
 
@@ -181,13 +181,13 @@ namespace srvmon
                 this.SystemdFailedUnits.Clear();
                 switch (systemctlProcess.StandardOutput.ReadToEnd().Trim())
                 {
-                    case "running": this.SystemdStatus = SystemStatus.Running; break;
-                    case "degraded": this.SystemdStatus = SystemStatus.Degraded; break;
-                    default: this.SystemdStatus = SystemStatus.Unknown; break;
+                    case "running": this.SystemdStatus = SysStatus.Running; break;
+                    case "degraded": this.SystemdStatus = SysStatus.Degraded; break;
+                    default: this.SystemdStatus = SysStatus.Unknown; break;
                 }
             }
             this.SystemdFailedUnits.Clear();
-            if (this.SystemdStatus != SystemStatus.Running)
+            if (this.SystemdStatus != SysStatus.Running)
                 using (var systemctlProcess = Process.Start(new ProcessStartInfo("/usr/bin/systemctl", "list-units --state=failed --no-legend -l")
                     {
                         UseShellExecute = false,
