@@ -23,10 +23,10 @@ namespace srvmon.Screens
             // write RX stats
             string speed = Helper.BytesToHumanReadableString((ulong)(stats.ReceiveSpeed[0] + 0.5f)) + "/s";
             Renderer.RenderString(Graphics, "S", font, Color.White, 0, 41);
-            Renderer.RenderString(Graphics, speed, font, Color.White, 7, 41);
+            Renderer.RenderString(Graphics, speed, font, Color.White, 8, 41);
             string total = Helper.BytesToHumanReadableString(stats.ReceivedBytes);
             Renderer.RenderString(Graphics, "T", font, Color.White, 0, 49);
-            Renderer.RenderString(Graphics, total, font, Color.White, 7, 49);
+            Renderer.RenderString(Graphics, total, font, Color.White, 8, 49);
             string dropped = "0% dropped";
             if (stats.ReceivedPackets > 0)
                 dropped = string.Format("{0:0.#}% dropped", (float)stats.DroppedPackets / stats.ReceivedPackets);
@@ -35,10 +35,10 @@ namespace srvmon.Screens
             // write TX stats
             speed = Helper.BytesToHumanReadableString((ulong)(stats.TransmitSpeed[0] + 0.5f)) + "/s";
             Renderer.RenderString(Graphics, "S", font, Color.White, 65, 41);
-            Renderer.RenderString(Graphics, speed, font, Color.White, 72, 41);
+            Renderer.RenderString(Graphics, speed, font, Color.White, 73, 41);
             total = Helper.BytesToHumanReadableString(stats.TransmittedBytes);
             Renderer.RenderString(Graphics, "T", font, Color.White, 65, 49);
-            Renderer.RenderString(Graphics, total, font, Color.White, 72, 49);
+            Renderer.RenderString(Graphics, total, font, Color.White, 73, 49);
         }
     }
 }

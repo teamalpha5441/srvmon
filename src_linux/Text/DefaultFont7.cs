@@ -502,7 +502,14 @@ namespace srvmon.Text
             }));
             // v
             // w
-            // x
+            _Letters.Add('x', new Letter(3, 5, new bool[]
+            {
+                true, false, true,
+                true, false, true,
+                false, true, false,
+                true, false, true,
+                true, false, true
+            }));
             // y
             // z
             _Letters.Add('/', new Letter(3, 6, new bool[]
