@@ -47,7 +47,7 @@
     <Compile Include="Renderer.cs" />
     <Compile Include="Screens\FontTestScreen.cs" />
     <Compile Include="Screens\HardDriveScreen.cs" />
-    <Compile Include="Screens\ResourceUsageScreen.cs" />
+    <Compile Include="Screens\CPUCoresUsageScreen.cs" />
     <Compile Include="Screens\SystemStatusScreen.cs" />
     <Compile Include="Text\Font.cs" />
     <Compile Include="Helper.cs" />

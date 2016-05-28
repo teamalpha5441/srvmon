@@ -45,7 +45,7 @@ namespace srvmon
             var screens = new List<Screen>(8);
             // screens.Add(new FontTestScreen());
             screens.Add(new SystemStatusScreen());
-            screens.Add(new ResourceUsageScreen());
+            screens.Add(new CPUCoresUsageScreen());
             for (byte i = 0; i < config.NetworkInterfaces.Length; i++)
                 screens.Add(new NetworkInterfaceScreen(config.NetworkInterfaces[i]));
             screens.Add(new HardDriveScreen(config.HardDrives.Keys.ToArray()));
