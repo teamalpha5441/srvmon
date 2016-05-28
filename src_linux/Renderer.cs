@@ -59,5 +59,11 @@ namespace srvmon
                 lastPoint = currentPoint;
             }
         }
+
+        public static void RenderProgressBar(Graphics Graphics, float Value, byte X, byte Y, byte MaxWidth, byte Height, float MaxValue = 1f)
+        {
+            if (Value != 0)
+                Graphics.FillRectangle(Brushes.White, X, Y, Value / MaxValue * MaxWidth, Height);
+        }
     }
 }
